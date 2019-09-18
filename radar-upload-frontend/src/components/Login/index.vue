@@ -38,7 +38,6 @@
 /* eslint-disable no-undef */
 import { clearInterval } from 'timers';
 import { clientId, authCallback, authAPI } from '@/app.config';
-import auth from '@/axios/auth';
 
 export default {
   data: () => ({
@@ -49,10 +48,9 @@ export default {
       window.open(`${authAPI}/authorize?client_id=${clientId}&response_type=code&redirect_uri=${authCallback}`);
       this.loading = true;
       // eslint-disable-next-line func-names
-      this.checkToken = setInterval(() => {
+      this.checkToken = setInterval(async () => {
         if (localStorage.getItem('token')) {
-          window.location.replace('');
-          auth.login();
+          window.location.href = '/';
         }
       }, 500);
     },

@@ -4,7 +4,8 @@ export default {
   logout() {
     return axios.get('/logout');
   },
-  login() {
-    return axios.get('/login');
+  async login() {
+    const { authorizationBearer } = await axios.get('/login');
+    document.cookie = `authorizationBearer=${authorizationBearer}`;
   },
 };

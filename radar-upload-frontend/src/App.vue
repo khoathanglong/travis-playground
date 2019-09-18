@@ -43,6 +43,7 @@ import LeftDrawer from '@/views/layouts/LeftDrawer';
 import AppBar from '@/views/layouts/AppBar';
 import { getToken } from '@/helpers';
 import { clientId } from '@/app.config';
+import auth from '@/axios/auth';
 
 export default {
   components: {
@@ -74,6 +75,11 @@ export default {
   },
   created() {
     this.getAuth();
+    // if user is logged in from management portal
+    // then call /login to get cookie to download file
+    if (localStorage.getItem('token')) {
+      auth.login();
+    }
   },
 };
 

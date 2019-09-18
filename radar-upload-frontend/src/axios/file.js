@@ -109,7 +109,7 @@ export default {
 
   async download({ recordId, fileName }) {
     const url = `${baseURL}/records/${recordId}/contents/${fileName}`;
-    await axios.get(url);
+    // await axios.get(url);
     downLoadFile(fileName, url);
   },
 
